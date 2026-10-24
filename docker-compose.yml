@@ -1,0 +1,93 @@
+# LocalRush — development stack. Production uses deploy/docker-compose.prod.yml.
+name: localrush
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-localrush}
+      POSTGRES_USER: ${POSTGRES_USER:-localrush}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-localrush}
+    command: postgres -c max_connections=200 -c shared_buffers=256MB
+    volumes: [pgdata:/var/lib/postgresql/data]
+    ports: ["127.0.0.1:5433:5432"]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U localrush"], interval: 5s, timeout: 3s, retries: 20}
+
+  redis:
+    image: redis:7.4-alpine
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes: [redisdata:/data]
+    ports: ["127.0.0.1:6380:6379"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 5s, timeout: 3s, retries: 20}
+
+  api:
+    build: {context: ./backend, args: {INSTALL_DEV: "true"}}
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput -v0 &&
+             daphne -b 0.0.0.0 -p 8000 config.asgi:application"
+    env_file: [backend/.env]
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DATABASE_URL: postgis://localrush:localrush@db:5432/localrush
+      DB_POOL: "true"
+      DB_POOL_MAX: "20"
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      OSRM_BASE_URL: http://osrm:5000
+      NOMINATIM_BASE_URL: http://nominatim:8080
+    volumes: ["./backend:/app", media:/app/media]
+    ports: ["8001:8000"]
+    depends_on: {db: {condition: service_healthy}, redis: {condition: service_healthy}}
+
+  worker:
+    build: {context: ./backend, args: {INSTALL_DEV: "true"}}
+    command: celery -A config worker -l info -Q default,notifications,tracking --concurrency=2
+    env_file: [backend/.env]
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DATABASE_URL: postgis://localrush:localrush@db:5432/localrush
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      OSRM_BASE_URL: http://osrm:5000
+      NOMINATIM_BASE_URL: http://nominatim:8080
+    volumes: ["./backend:/app", media:/app/media]
+    depends_on: {db: {condition: service_healthy}, redis: {condition: service_healthy}}
+
+  beat:
+    build: {context: ./backend, args: {INSTALL_DEV: "true"}}
+    command: celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file: [backend/.env]
+    environment:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      DATABASE_URL: postgis://localrush:localrush@db:5432/localrush
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+    volumes: ["./backend:/app"]
+    depends_on: {db: {condition: service_healthy}, redis: {condition: service_healthy}}
+
+  # Self-hosted routing. Run `deploy/scripts/prepare-osrm.sh <region>` once to build the graph.
+  osrm:
+    image: ghcr.io/project-osrm/osrm-backend:v5.27.1
+    command: ["sh", "-c", "if [ -f /data/region.osrm ] || ls /data/region.osrm.* >/dev/null 2>&1; then osrm-routed --algorithm mld --max-table-size 1000 /data/region.osrm; else echo 'OSRM data missing - run deploy/scripts/prepare-osrm.sh'; sleep infinity; fi"]
+    volumes: ["./deploy/osrm/data:/data"]
+    ports: ["127.0.0.1:5001:5000"]
+    profiles: [maps]
+
+  # Self-hosted geocoding. First start imports the PBF (takes a while).
+  nominatim:
+    image: mediagis/nominatim:4.4
+    environment:
+      PBF_PATH: /nominatim/data/region.osm.pbf
+      REPLICATION_URL: ""
+      NOMINATIM_PASSWORD: nominatim
+      IMPORT_STYLE: address
+    volumes: ["./deploy/nominatim/data:/nominatim/data", nominatimdata:/var/lib/postgresql/14/main]
+    ports: ["127.0.0.1:8081:8080"]
+    shm_size: 1g
+    profiles: [maps]
+
+volumes:
+  pgdata: {}
+  redisdata: {}
+  media: {}
+  nominatimdata: {}

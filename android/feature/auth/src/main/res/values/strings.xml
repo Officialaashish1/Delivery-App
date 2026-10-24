@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_phone_title">Enter your mobile number</string>
+    <string name="auth_phone_subtitle">We\'ll send you a one-time password to verify it.</string>
+    <string name="auth_phone_label">Mobile number</string>
+    <string name="auth_continue">Continue</string>
+    <string name="auth_terms">By continuing you agree to our Terms of Service and Privacy Policy.</string>
+    <string name="auth_otp_title">Verify OTP</string>
+    <string name="auth_otp_subtitle">Enter the 6-digit code sent to %1$s</string>
+    <string name="auth_otp_change_number">Change number</string>
+    <string name="auth_otp_resend">Resend OTP</string>
+    <string name="auth_otp_resend_in">Resend OTP in %1$s</string>
+    <string name="auth_otp_verify">Verify</string>
+    <string name="auth_otp_attempts_left">%1$d attempts left</string>
+    <string name="auth_otp_dev_hint">Dev build: OTP is %1$s</string>
+    <string name="auth_otp_sent">OTP sent</string>
+    <string name="auth_name_label">Your name</string>
+    <string name="auth_name_hint">New here? Tell us your name</string>
+    <string name="auth_password_title">Partner login</string>
+    <string name="auth_password_subtitle">Sign in with your registered mobile number and password.</string>
+    <string name="auth_password_label">Password</string>
+    <string name="auth_login">Log in</string>
+    <string name="auth_use_otp">Use OTP instead</string>
+    <string name="auth_use_password">Log in with password</string>
+    <string name="auth_forgot_password">Forgot password?</string>
+    <string name="auth_forgot_sent">If an account exists, a reset link has been sent.</string>
+    <string name="auth_show_password">Show password</string>
+    <string name="auth_hide_password">Hide password</string>
+</resources>

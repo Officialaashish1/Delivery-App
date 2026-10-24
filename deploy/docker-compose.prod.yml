@@ -1,0 +1,124 @@
+# LocalRush — production stack for a single Linux VPS (scale out later by moving db/redis/osrm to separate hosts).
+# Usage:  cd deploy && docker compose -f docker-compose.prod.yml --env-file ../backend/.env up -d --build
+name: localrush-prod
+x-backend: &backend
+  build: {context: ../backend}
+  image: localrush/backend:latest
+  env_file: [../backend/.env]
+  restart: unless-stopped
+  volumes:
+    - media:/app/media
+    - static:/app/staticfiles
+    - ../secrets:/run/secrets:ro          # firebase.json lives here (never in git)
+  depends_on:
+    db: {condition: service_healthy}
+    redis: {condition: service_healthy}
+  logging: {driver: json-file, options: {max-size: "20m", max-file: "5"}}
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    command: >
+      postgres -c max_connections=200 -c shared_buffers=512MB -c effective_cache_size=1536MB
+               -c work_mem=8MB -c maintenance_work_mem=128MB -c wal_level=replica -c log_min_duration_statement=500
+    volumes: [pgdata:/var/lib/postgresql/data, ./backups:/backups]
+    healthcheck: {test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"], interval: 10s, timeout: 5s, retries: 10}
+
+  redis:
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 512mb --maxmemory-policy allkeys-lru --requirepass ${REDIS_PASSWORD}
+    volumes: [redisdata:/data]
+    healthcheck: {test: ["CMD", "redis-cli", "-a", "${REDIS_PASSWORD}", "ping"], interval: 10s, timeout: 5s, retries: 10}
+
+  migrate:
+    <<: *backend
+    restart: "no"
+    command: sh -c "python manage.py migrate --noinput && python manage.py collectstatic --noinput -v0 && python manage.py seed"
+
+  # REST API (WSGI) — gunicorn with gthread workers
+  api:
+    <<: *backend
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-4} --threads 4 --timeout 60 --max-requests 2000 --max-requests-jitter 200 --access-logfile - --error-logfile -
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck: {test: ["CMD", "curl", "-fsS", "http://localhost:8000/healthz/"], interval: 15s, timeout: 5s, retries: 5}
+
+  # WebSockets (ASGI) — daphne; nginx routes /ws/ here
+  ws:
+    <<: *backend
+    command: daphne -b 0.0.0.0 -p 8001 --proxy-headers config.asgi:application
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  worker:
+    <<: *backend
+    command: celery -A config worker -l info -Q default,notifications,tracking --concurrency=${CELERY_CONCURRENCY:-4} --max-tasks-per-child=500
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  beat:
+    <<: *backend
+    command: celery -A config beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+
+  osrm:
+    image: ghcr.io/project-osrm/osrm-backend:v5.27.1
+    restart: unless-stopped
+    command: osrm-routed --algorithm mld --max-table-size 1000 --max-matching-size 500 /data/region.osrm
+    volumes: ["./osrm/data:/data:ro"]
+
+  nominatim:
+    image: mediagis/nominatim:4.4
+    restart: unless-stopped
+    environment:
+      PBF_PATH: /nominatim/data/region.osm.pbf
+      REPLICATION_URL: ${NOMINATIM_REPLICATION_URL:-}
+      NOMINATIM_PASSWORD: ${NOMINATIM_PASSWORD:-nominatim}
+      IMPORT_STYLE: address
+      THREADS: 4
+    volumes: ["./nominatim/data:/nominatim/data", nominatimdata:/var/lib/postgresql/14/main]
+    shm_size: 1g
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+      - media:/srv/media:ro
+      - static:/srv/static:ro
+    depends_on: [api, ws]
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes: ["./certbot/conf:/etc/letsencrypt", "./certbot/www:/var/www/certbot"]
+    entrypoint: sh -c "trap exit TERM; while :; do certbot renew --webroot -w /var/www/certbot --quiet; sleep 12h & wait $${!}; done"
+
+  backup:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-14}
+    volumes: ["./backups:/backups", "./scripts/backup-db.sh:/backup-db.sh:ro"]
+    entrypoint: sh -c "while :; do sh /backup-db.sh; sleep 86400; done"
+    depends_on: [db]
+
+volumes:
+  pgdata: {}
+  redisdata: {}
+  media: {}
+  static: {}
+  nominatimdata: {}

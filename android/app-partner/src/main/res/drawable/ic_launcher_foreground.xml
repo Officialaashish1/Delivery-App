@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "LR" monogram: L (left) and R (right) as filled paths, white, centred in the 66dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- L -->
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M30,36 h9 v28 h13 v8 H30 Z" />
+    <!-- R: stem -->
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M56,36 h9 v36 h-9 Z" />
+    <!-- R: bowl (outer minus inner) -->
+    <path android:fillColor="#FFFFFFFF" android:fillType="evenOdd"
+        android:pathData="M63,36 h8 c7,0 11,4 11,10.5 c0,6.5 -4,10.5 -11,10.5 h-8 Z M65,43 v7 h5.5 c2.5,0 4,-1.3 4,-3.5 c0,-2.2 -1.5,-3.5 -4,-3.5 Z" />
+    <!-- R: leg -->
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M68,55 h8.5 l7,17 h-9.5 Z" />
+</vector>

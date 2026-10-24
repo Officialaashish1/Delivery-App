@@ -1,0 +1,23 @@
+# android
+android/**/build/
+android/**/google-services.json
+android/.gradle/
+android/**/*.keystore
+android/local.properties
+backend/.env
+backend/loadtests/tokens.json
+backend/media/
+backend/staticfiles/
+deploy/nominatim/data/
+deploy/osrm/data/
+dist/
+*.env.local
+# env / secrets
+firebase*.json
+# maps data
+*.pyc
+__pycache__/
+.pytest_cache/
+# python
+.ruff_cache/
+secrets/

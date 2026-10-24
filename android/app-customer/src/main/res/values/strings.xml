@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LocalRush</string>
+    <string name="auth_headline">Food, delivered fast</string>
+    <string name="signed_out_message">You were signed out. Please log in again.</string>
+    <string name="offline_message">You\'re offline</string>
+
+    <!-- generic actions -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_change">Change</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_close">Close</string>
+    <string name="action_decrease">Decrease quantity</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_get_started">Get started</string>
+    <string name="action_increase">Increase quantity</string>
+    <string name="action_keep_order">Keep order</string>
+    <string name="action_login">Log in</string>
+    <string name="action_logout">Log out</string>
+    <string name="action_next">Next</string>
+    <string name="action_not_now">Not now</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_save">Save</string>
+    <string name="action_see_all">See all</string>
+    <string name="action_skip">Skip</string>
+
+    <!-- onboarding -->
+    <string name="onb_1_title">Your neighbourhood, on a plate</string>
+    <string name="onb_1_body">Discover restaurants near you, from street-side dosa to late-night biryani.</string>
+    <string name="onb_2_title">Fast local delivery</string>
+    <string name="onb_2_body">Riders from your area bring food to your door, hot and on time.</string>
+    <string name="onb_3_title">Track every minute</string>
+    <string name="onb_3_body">Watch your order live on the map and chat with your rider.</string>
+
+    <!-- location -->
+    <string name="location_search_hint">Search for area, street or landmark</string>
+    <string name="location_use_current">Use my current location</string>
+    <string name="location_deliver_to">Deliver to</string>
+    <string name="location_resolving">Locating…</string>
+    <string name="location_move_pin">Move the map to place the pin on your doorstep</string>
+    <string name="location_confirm">Confirm location</string>
+    <string name="location_no_results">No places found. Try another name.</string>
+    <string name="location_unavailable">Couldn\'t get your location. Turn on GPS or move the pin manually.</string>
+    <string name="location_permission_denied">Location permission denied. You can still pick a spot on the map.</string>
+
+    <!-- login prompt -->
+    <string name="login_required_title">Log in to continue</string>
+    <string name="login_required_body">Sign in with your mobile number to add items to your cart and place orders.</string>
+
+    <!-- tabs -->
+    <string name="tab_home">Home</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_orders">Orders</string>
+    <string name="tab_profile">Profile</string>
+
+    <!-- home -->
+    <string name="home_your_location">Your Location</string>
+    <string name="home_set_location">Tap to set your delivery location</string>
+    <string name="home_welcome">Hi %1$s, are you hungry?</string>
+    <string name="home_search_hint">Are you hungry !!</string>
+    <string name="home_whats_on_your_mind">What\'s on Your Mind?</string>
+    <string name="home_find_nearby">Find Nearby</string>
+    <string name="home_find_nearby_body">Restaurant Near from You</string>
+    <string name="home_see_location">See Location</string>
+    <string name="home_recently_ordered">Recently ordered</string>
+    <string name="home_recommended">Recommended for you</string>
+    <string name="home_cuisines">Cuisines</string>
+    <string name="home_use_code">Use code %1$s</string>
+    <string name="home_empty_title">No restaurants around here yet</string>
+    <string name="home_empty_body">We\'re not delivering to this location yet. Try a different spot nearby.</string>
+    <string name="home_change_location">Change location</string>
+    <string name="home_stale">Showing saved results — %1$s</string>
+
+    <!-- restaurant cards -->
+    <string name="restaurant_closed">Closed</string>
+    <string name="restaurant_closed_today">Closed today</string>
+    <string name="restaurant_promoted">Promoted</string>
+    <string name="restaurant_eta_min">%1$d min</string>
+    <string name="restaurant_free_delivery">Free delivery</string>
+    <string name="restaurant_free">Free</string>
+    <string name="restaurant_delivery_fee">%1$s delivery</string>
+    <string name="restaurant_cost_for_two">%1$s for two</string>
+    <string name="restaurant_info_fee">Delivery</string>
+    <string name="restaurant_info_min_order">Min order</string>
+    <string name="restaurant_info_cost_for_two">For two</string>
+    <string name="restaurant_info_hours">Today</string>
+
+    <!-- search -->
+    <string name="search_hint">Search restaurants, dishes, cuisines</string>
+    <string name="search_recent">Recent searches</string>
+    <string name="search_start_title">Craving something?</string>
+    <string name="search_start_body">Search for a restaurant, dish or cuisine near you.</string>
+    <string name="search_no_results_title">No matches</string>
+    <string name="search_no_results_body">We couldn\'t find anything for “%1$s”. Try a different spelling.</string>
+    <string name="search_tab_restaurants">Restaurants (%1$d)</string>
+    <string name="search_tab_dishes">Dishes (%1$d)</string>
+    <string name="search_tab_cuisines">Cuisines (%1$d)</string>
+    <string name="search_tab_empty">Nothing here for this search.</string>
+    <string name="search_see_all_with_filters">See all with filters</string>
+
+    <!-- list & filters -->
+    <string name="list_empty_title">No restaurants found</string>
+    <string name="list_empty_body">Try widening your filters or searching for something else.</string>
+    <string name="filters_title">Filters</string>
+    <string name="filters_veg_only">Pure veg only</string>
+    <string name="filters_open_now">Open now</string>
+    <string name="filters_rating">Rating</string>
+    <string name="filters_any">Any</string>
+    <string name="filters_sort">Sort by</string>
+    <string name="filters_clear">Clear</string>
+    <string name="filters_apply">Apply</string>
+    <string name="sort_relevance">Relevance</string>
+    <string name="sort_rating">Rating</string>
+    <string name="sort_delivery_time">Delivery time</string>
+    <string name="sort_distance">Distance</string>
+    <string name="sort_cost_low">Cost: low to high</string>
+    <string name="sort_cost_high">Cost: high to low</string>
+
+    <!-- menu -->
+    <string name="menu_add">ADD</string>
+    <string name="menu_add_count">ADD · %1$d</string>
+    <string name="menu_add_for">Add item · %1$s</string>
+    <string name="menu_customisable">customisable</string>
+    <string name="menu_bestseller">Bestseller</string>
+    <string name="menu_recommended">Recommended</string>
+    <string name="menu_unavailable">Unavailable</string>
+    <string name="menu_required">Required · choose one</string>
+    <string name="menu_optional">Optional</string>
+    <string name="menu_choose_between">Choose %1$d to %2$d</string>
+    <string name="menu_choose_exactly">Choose %1$d</string>
+    <string name="menu_choose_up_to">Choose up to %1$d</string>
+    <string name="menu_special_instructions">Special instructions</string>
+    <string name="menu_special_instructions_hint">e.g. less spicy, no onions</string>
+    <string name="menu_empty_title">Menu not available</string>
+    <string name="menu_empty_body">This restaurant hasn\'t published its menu yet.</string>
+    <string name="reviews_title">Ratings &amp; reviews</string>
+    <string name="reviews_empty">No reviews yet</string>
+    <string name="reviews_anonymous">LocalRush customer</string>
+    <string name="reviews_partner_reply">Restaurant replied: %1$s</string>
+
+    <!-- cart -->
+    <string name="cart_title">Your cart</string>
+    <string name="cart_view">View cart</string>
+    <string name="cart_added">Added to cart</string>
+    <string name="cart_clear">Clear</string>
+    <string name="cart_empty_title">Your cart is empty</string>
+    <string name="cart_empty_body">Good food is one tap away. Browse restaurants near you.</string>
+    <string name="cart_browse">Browse restaurants</string>
+    <string name="cart_offers">Offers &amp; coupons</string>
+    <string name="cart_view_offers">View offers</string>
+    <string name="cart_no_offers">No offers available right now</string>
+    <string name="cart_offer_saves">Saves you %1$s</string>
+    <string name="cart_coupon_hint">Enter coupon code</string>
+    <string name="cart_apply">Apply</string>
+    <string name="cart_coupon_applied">%1$s applied</string>
+    <string name="cart_you_save">You save %1$s</string>
+    <string name="cart_select_address">Select delivery address</string>
+    <string name="cart_deliver_to">Deliver to %1$s</string>
+    <string name="cart_address_needed">Add an address to see the delivery fee</string>
+    <string name="cart_min_order">Minimum order is %1$s. Add more items to continue.</string>
+    <string name="cart_unavailable_items">Some items are unavailable. Remove them to continue.</string>
+    <string name="cart_total_label">Total (incl. taxes)</string>
+    <string name="cart_checkout">Proceed to checkout</string>
+    <string name="cart_replace_title">Replace cart?</string>
+    <string name="cart_replace_body">Your cart has items from %1$s. Replace them with this item?</string>
+    <string name="cart_replace_confirm">Replace</string>
+    <string name="cart_another_restaurant">another restaurant</string>
+    <plurals name="cart_items_count">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <plurals name="reviews_count">
+        <item quantity="one">%1$d review</item>
+        <item quantity="other">%1$d reviews</item>
+    </plurals>
+
+    <!-- bill -->
+    <string name="bill_title">Bill details</string>
+    <string name="bill_item_total">Item total</string>
+    <string name="bill_packaging">Packaging</string>
+    <string name="bill_delivery_fee">Delivery fee</string>
+    <string name="bill_delivery_discount">Delivery discount</string>
+    <string name="bill_platform_fee">Platform fee</string>
+    <string name="bill_taxes">GST (%1$s%%)</string>
+    <string name="bill_coupon">Coupon %1$s</string>
+    <string name="bill_total">To pay</string>
+    <string name="bill_distance">Delivery distance %1$s</string>
+
+    <!-- address -->
+    <string name="address_add">Add address</string>
+    <string name="address_add_new">Add a new address</string>
+    <string name="address_add_title">Add address</string>
+    <string name="address_edit_title">Edit address</string>
+    <string name="address_none">No saved addresses</string>
+    <string name="address_none_body">Add your home or work address to order faster.</string>
+    <string name="address_default">Default</string>
+    <string name="address_set_default">Set as default</string>
+    <string name="address_pin_hint">Drag the map so the pin sits on your door. We\'ll fill in what we can.</string>
+    <string name="address_label_home">Home</string>
+    <string name="address_label_work">Work</string>
+    <string name="address_label_other">Other</string>
+    <string name="address_line1">Flat / house no., building, street</string>
+    <string name="address_line2">Area / locality</string>
+    <string name="address_landmark">Landmark (optional)</string>
+    <string name="address_city">City</string>
+    <string name="address_pincode">PIN code</string>
+    <string name="address_state">State</string>
+    <string name="address_contact_name">Receiver\'s name (optional)</string>
+    <string name="address_contact_phone">Receiver\'s mobile (optional)</string>
+    <string name="address_instructions">Delivery instructions (optional)</string>
+    <string name="address_save">Save address</string>
+    <string name="address_delete_title">Delete address?</string>
+    <string name="address_delete_body">This address will be removed from your account.</string>
+
+    <!-- checkout -->
+    <string name="checkout_title">Checkout</string>
+    <string name="checkout_delivery_address">Delivery address</string>
+    <string name="checkout_instructions_title">Instructions</string>
+    <string name="checkout_instructions_hint">Delivery instructions for the rider (gate code, floor…)</string>
+    <string name="checkout_note_hint">Note for the restaurant</string>
+    <string name="checkout_contactless">Contactless delivery</string>
+    <string name="checkout_contactless_body">The rider leaves the order at your door.</string>
+    <string name="checkout_payment_title">Payment method</string>
+    <string name="checkout_secured_by_razorpay">Secured by Razorpay</string>
+    <string name="checkout_cod_disabled">Cash on delivery is currently unavailable</string>
+    <string name="checkout_cod_limit">Cash on delivery is available for orders up to %1$s</string>
+    <string name="checkout_place_order">Place order</string>
+    <string name="checkout_pay_and_place">Pay %1$s</string>
+    <string name="checkout_verifying">Confirming your payment…</string>
+    <string name="checkout_retrying">Restarting payment…</string>
+    <string name="checkout_payment_failed_title">Payment not completed</string>
+    <string name="checkout_payment_failed_body">%1$s. Your order is saved; you can try paying again.</string>
+    <string name="checkout_retry_payment">Retry payment</string>
+    <string name="checkout_view_order">View order</string>
+    <string name="checkout_payment_generic">The payment was not completed</string>
+    <string name="checkout_payment_unavailable">Payment could not be restarted. Please try again later.</string>
+    <string name="payment_cancelled">Payment cancelled</string>
+    <string name="payment_network_error">Network error during payment</string>
+    <string name="payment_failed">Payment failed</string>
+    <string name="payment_incomplete_response">Payment response was incomplete</string>
+    <string name="validation_required">Required</string>
+    <string name="validation_phone">Enter a valid 10-digit mobile number</string>
+    <string name="pay_cod">Cash on delivery</string>
+    <string name="pay_upi">UPI</string>
+    <string name="pay_card">Credit / debit card</string>
+    <string name="pay_netbanking">Net banking</string>
+    <string name="pay_online">Online</string>
+
+    <!-- success -->
+    <string name="success_title">Order placed!</string>
+    <string name="success_body">The restaurant has received your order.</string>
+    <string name="success_order_number">Order #%1$s is on its way to the kitchen.</string>
+    <string name="success_eta">Arriving by %1$s</string>
+    <string name="success_track">Track order</string>
+    <string name="success_home">Back to orders</string>
+
+    <!-- orders -->
+    <string name="orders_title">Your orders</string>
+    <string name="orders_tab_active">Active</string>
+    <string name="orders_tab_past">Past</string>
+    <string name="orders_login_title">Log in to see your orders</string>
+    <string name="orders_login_body">Your active and past orders show up here.</string>
+    <string name="orders_empty_active">No active orders</string>
+    <string name="orders_empty_past">No past orders</string>
+    <string name="orders_empty_body">Hungry? Your next meal is a few taps away.</string>
+    <string name="order_number">Order #%1$s</string>
+    <string name="order_track">Track order</string>
+    <string name="order_track_live">Track live</string>
+    <string name="order_detail_title">Order details</string>
+    <string name="order_eta_at">Arriving by %1$s</string>
+    <string name="order_items_title">Items</string>
+    <string name="order_paid_via">%1$s · %2$s</string>
+    <string name="order_paid">Paid</string>
+    <string name="order_unpaid">Pay on delivery</string>
+    <string name="order_refund_title">Refund</string>
+    <string name="order_refund_processed">Processed %1$s</string>
+    <string name="order_timeline_title">Order status</string>
+    <string name="order_delivery_title">Delivery details</string>
+    <string name="order_instructions">Instructions: %1$s</string>
+    <string name="order_rate">Rate your order</string>
+    <string name="order_reorder">Reorder</string>
+    <string name="order_reorder_skipped">Some items were unavailable and skipped:</string>
+    <string name="order_payment_confirmed">Payment confirmed</string>
+    <string name="order_invoice">Invoice</string>
+    <string name="order_invoice_no_app">No app available to open the invoice</string>
+    <string name="order_help">Help</string>
+    <string name="order_view_restaurant">View restaurant</string>
+    <string name="order_cancel">Cancel order</string>
+    <string name="order_cancel_title">Cancel this order?</string>
+    <string name="order_cancel_body">Tell us why you\'re cancelling.</string>
+    <string name="order_cancel_confirm">Cancel order</string>
+    <string name="cancel_reason_mistake">Ordered by mistake</string>
+    <string name="cancel_reason_long">Taking too long</string>
+    <string name="cancel_reason_change_mind">Changed my mind</string>
+    <string name="cancel_reason_other">Other</string>
+
+    <!-- rate -->
+    <string name="rate_title">Rate your order</string>
+    <string name="rate_restaurant_q">How was the food?</string>
+    <string name="rate_rider_q">How was the delivery?</string>
+    <string name="rate_comment_hint">Tell the restaurant what you liked (optional)</string>
+    <string name="rate_rider_comment_hint">Anything about the rider? (optional)</string>
+    <string name="rate_items_title">Rate the dishes</string>
+    <string name="rate_submit">Submit review</string>
+
+    <!-- tracking -->
+    <string name="tracking_title">Track order</string>
+    <string name="tracking_live">Live</string>
+    <string name="tracking_connecting">Connecting</string>
+    <string name="tracking_reconnecting">Reconnecting</string>
+    <string name="tracking_polling">Updating every 15 s</string>
+    <string name="tracking_recenter">Recenter map</string>
+    <string name="tracking_distance_away">%1$s away</string>
+    <string name="tracking_eta_pending">Calculating ETA…</string>
+    <string name="tracking_eta_caption_on_way">Your rider is on the way</string>
+    <string name="tracking_eta_caption_preparing">Estimated delivery time</string>
+    <string name="tracking_arrives_by">Arrives by</string>
+    <string name="tracking_delivered_at">Delivered at %1$s</string>
+    <string name="tracking_otp_title">Delivery OTP</string>
+    <string name="tracking_otp_body">Share this code with your rider at the door</string>
+    <string name="tracking_view_order">Details</string>
+    <string name="tracking_rider_meta">★ %1$s · %2$d deliveries</string>
+    <string name="tracking_call">Call</string>
+    <string name="tracking_contact_unavailable">Rider contact is not available right now</string>
+    <string name="tracking_chat">Chat</string>
+    <string name="tracking_assigning_rider">Finding a rider near the restaurant…</string>
+    <string name="tracking_order_total">Order total</string>
+    <string name="tracking_delivering_to">Delivering to %1$s</string>
+    <string name="chat_empty">Say hi to your rider — messages show up here.</string>
+    <string name="chat_hint">Type a message</string>
+    <string name="chat_send">Send</string>
+    <string name="chat_unavailable">Chat is available once a rider is assigned.</string>
+
+    <!-- notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty">No notifications</string>
+    <string name="notifications_empty_body">Order updates and offers will appear here.</string>
+
+    <!-- profile -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_guest_title">You\'re browsing as a guest</string>
+    <string name="profile_guest_body">Log in to see your orders, addresses and notifications.</string>
+    <string name="profile_no_name">Add your name</string>
+    <string name="profile_orders_count">%1$d orders</string>
+    <string name="profile_my_orders">My orders</string>
+    <string name="profile_addresses">Saved addresses</string>
+    <string name="profile_help">Help &amp; support</string>
+    <string name="profile_about">About &amp; legal</string>
+    <string name="profile_delete_account">Delete account</string>
+    <string name="profile_delete_title">Delete your account?</string>
+    <string name="profile_delete_body">Your profile, addresses and order history will be permanently removed. This cannot be undone.</string>
+    <string name="profile_delete_confirm">Delete</string>
+    <string name="profile_edit_title">Edit profile</string>
+    <string name="profile_name">Full name</string>
+    <string name="profile_email">Email (optional)</string>
+    <string name="profile_veg_only">Veg only</string>
+    <string name="profile_veg_only_body">Prefer vegetarian restaurants and dishes.</string>
+
+    <!-- help -->
+    <string name="help_contact">Contact us</string>
+    <string name="help_call">Call</string>
+    <string name="help_email">Email</string>
+    <string name="help_tickets">Your tickets</string>
+    <string name="help_new_ticket">New ticket</string>
+    <string name="help_login_for_tickets">Log in to raise or view support tickets.</string>
+    <string name="help_no_tickets">No tickets yet.</string>
+    <string name="help_faqs">Frequently asked questions</string>
+    <string name="ticket_about_order">This ticket is about one of your orders.</string>
+    <string name="ticket_category">What\'s this about?</string>
+    <string name="ticket_subject">Subject</string>
+    <string name="ticket_description">Describe the issue</string>
+    <string name="ticket_description_hint">At least 10 characters</string>
+    <string name="ticket_submit">Submit ticket</string>
+    <string name="ticket_close">Close ticket</string>
+    <string name="ticket_resolution">Resolution: %1$s</string>
+    <string name="ticket_support">LocalRush support</string>
+    <string name="ticket_you">You</string>
+
+    <!-- about / terms -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_tagline">Local restaurants, local riders, delivered fast.</string>
+    <string name="about_terms">Terms of service</string>
+    <string name="about_privacy">Privacy policy</string>
+    <string name="about_licenses">Open-source licences</string>
+    <string name="about_maps_credit">Maps © OpenFreeMap © OpenMapTiles, data from OpenStreetMap contributors.</string>
+    <string name="terms_title">Terms &amp; privacy</string>
+    <string name="terms_intro">Before you order, please review how LocalRush works and how we handle your data.</string>
+    <string name="terms_section_service">Service: orders are fulfilled by independent restaurants and delivered by local riders. Prices, fees and taxes are shown before you pay.</string>
+    <string name="terms_section_privacy">Privacy: we use your phone number for login, your addresses for delivery and your location to show nearby restaurants. We never sell your data.</string>
+    <string name="terms_section_payments">Payments: online payments are processed by Razorpay. LocalRush never stores your card details.</string>
+    <string name="terms_accept">Accept and continue</string>
+    <string name="terms_decline">Decline and log out</string>
+</resources>

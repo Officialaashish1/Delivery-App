@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.LocalRush" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <!-- Android 12+ system splash (core-splashscreen); Compose SplashScreen animates right after. -->
+    <style name="Theme.LocalRush.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/lr_orange</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="postSplashScreenTheme">@style/Theme.LocalRush</item>
+    </style>
+</resources>

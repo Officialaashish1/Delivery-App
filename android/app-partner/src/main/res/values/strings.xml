@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="app_name">LocalRush Partner</string>
+    <string name="auth_headline">Grow with LocalRush</string>
+    <string name="signed_out_message">You were signed out. Please log in again.</string>
+    <string name="offline_message">You\'re offline. Showing the last known data.</string>
+    <string name="logout_confirm">Log out of the partner app? You will stop receiving order alerts on this phone.</string>
+
+    <!-- common actions -->
+    <string name="action_back">Back</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_ok">OK</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_logout">Log out</string>
+    <string name="action_upload">Upload</string>
+    <string name="action_send">Send</string>
+    <string name="action_submit">Submit</string>
+    <string name="action_view">View</string>
+    <string name="action_view_all">View all</string>
+    <string name="action_select_all">Select all</string>
+    <string name="action_move_up">Move up</string>
+    <string name="action_move_down">Move down</string>
+    <string name="action_accept">Accept</string>
+    <string name="action_reject">Reject</string>
+    <string name="action_start_preparing">Start preparing</string>
+    <string name="action_mark_ready">Food is ready</string>
+    <string name="action_cancel_order">Cancel order</string>
+    <string name="common_empty">Nothing here yet</string>
+    <string name="common_reason">Reason</string>
+    <string name="percent_value">%1$s%%</string>
+
+    <!-- tabs -->
+    <string name="tab_dashboard">Home</string>
+    <string name="tab_orders">Orders</string>
+    <string name="tab_menu">Menu</string>
+    <string name="tab_finance">Finance</string>
+    <string name="tab_more">More</string>
+
+    <!-- registration -->
+    <string-array name="registration_steps">
+        <item>Business details</item>
+        <item>Address &amp; location</item>
+        <item>Licences &amp; tax</item>
+        <item>Payouts</item>
+        <item>Opening hours</item>
+        <item>Cuisines &amp; photos</item>
+        <item>Documents</item>
+    </string-array>
+    <string name="registration_step_of">Step %1$d of %2$d</string>
+    <string name="registration_submit">Register restaurant</string>
+    <string name="registration_finish">Finish</string>
+    <string name="registration_hours_hint">Set when you take orders each day. You can change this any time from Settings.</string>
+    <string name="registration_documents_hint">Upload your FSSAI licence, GST certificate, PAN, cancelled cheque and owner ID. Our team verifies them before approval.</string>
+    <string name="reg_step_business">Business</string>
+    <string name="reg_step_address">Address</string>
+    <string name="reg_step_compliance">Licences &amp; tax</string>
+    <string name="reg_step_bank">Payouts</string>
+    <string name="reg_name">Restaurant name</string>
+    <string name="reg_type">Type of business</string>
+    <string-array name="restaurant_types">
+        <item>Restaurant</item>
+        <item>Hotel</item>
+        <item>Cafe</item>
+        <item>Cloud kitchen</item>
+        <item>Bakery</item>
+        <item>Sweets &amp; snacks</item>
+        <item>Other</item>
+    </string-array>
+    <string name="reg_description">Short description</string>
+    <string name="reg_owner_name">Owner name</string>
+    <string name="reg_phone">Restaurant phone</string>
+    <string name="reg_email">Email (optional)</string>
+    <string name="reg_cost_for_two">Cost for two (optional)</string>
+    <string name="reg_pure_veg">Pure vegetarian restaurant</string>
+    <string name="reg_map_pin">Restaurant location</string>
+    <string name="reg_map_hint">Drag the map until the pin is on your entrance. Riders navigate to this point.</string>
+    <string name="reg_search_address">Search for an area or street</string>
+    <string name="reg_address1">Shop / building, street</string>
+    <string name="reg_address2">Area / locality</string>
+    <string name="reg_landmark">Landmark (optional)</string>
+    <string name="reg_city">City</string>
+    <string name="reg_state">State</string>
+    <string name="reg_postal">PIN code</string>
+    <string name="reg_radius">Delivery radius (km)</string>
+    <string name="reg_compliance_hint">Optional now, but required before approval. Numbers are locked after approval.</string>
+    <string name="reg_fssai">FSSAI licence number</string>
+    <string name="reg_fssai_expiry">FSSAI expiry date</string>
+    <string name="reg_fssai_expiry_value">FSSAI expires %1$s</string>
+    <string name="reg_gst">GSTIN</string>
+    <string name="reg_pan">PAN</string>
+    <string name="reg_bank_hint">Where should we send your settlements? Add a bank account, a UPI ID, or both.</string>
+    <string name="reg_bank_name">Account holder name</string>
+    <string name="reg_bank_number">Bank account number</string>
+    <string name="reg_ifsc">IFSC code</string>
+    <string name="reg_upi">UPI ID</string>
+    <string name="reg_images">Photos</string>
+    <string name="reg_logo">Logo</string>
+    <string name="reg_cover">Cover photo</string>
+    <string name="reg_cuisines">Cuisines</string>
+    <string name="reg_categories">Categories</string>
+    <string name="reg_order_settings">Order settings</string>
+
+    <!-- validation -->
+    <string name="error_required">This field is required</string>
+    <string name="error_phone">Enter a valid 10-digit mobile number</string>
+    <string name="error_email">Enter a valid email address</string>
+    <string name="error_pin">Drop the pin on your restaurant</string>
+    <string name="error_postal">Enter a valid 6-digit PIN code</string>
+    <string name="error_radius">Radius must be between 1 and 50 km</string>
+    <string name="error_fssai">FSSAI number has 14 digits</string>
+    <string name="error_gst">Enter a valid 15-character GSTIN</string>
+    <string name="error_pan">Enter a valid PAN (e.g. ABCDE1234F)</string>
+    <string name="error_bank_or_upi">Add a bank account or a UPI ID</string>
+    <string name="error_account">Account number must be 9–18 digits</string>
+    <string name="error_ifsc">Enter a valid IFSC (e.g. HDFC0001234)</string>
+    <string name="error_upi">Enter a valid UPI ID (name@bank)</string>
+    <string name="error_cuisines">Pick at least one cuisine</string>
+    <string name="error_amount">Enter a valid amount</string>
+    <string name="error_prep">Preparation time must be 5–120 minutes</string>
+    <string name="error_prep_item">Preparation time must be 1–240 minutes</string>
+    <string name="error_discount_not_lower">Discounted price must be lower than the price</string>
+    <string name="error_stock">Enter the stock quantity</string>
+    <string name="error_min_gt_max">Minimum cannot exceed maximum</string>
+    <string name="error_max_gt_options">Maximum cannot exceed the number of options</string>
+    <string name="error_no_options">Add at least one option</string>
+    <string name="error_multiple_defaults">Only one option can be the default</string>
+    <string name="error_description_short">Describe the issue in at least 10 characters</string>
+
+    <!-- approval -->
+    <string name="approval_title">Application status</string>
+    <string name="approval_pending_title">Application received</string>
+    <string name="approval_review_title">Under review</string>
+    <string name="approval_pending_body">Our team is verifying your details and documents. This usually takes 1–2 working days. We\'ll notify you once you\'re approved.</string>
+    <string name="approval_rejected_title">Application needs changes</string>
+    <string name="approval_rejected_body">Please fix the issue below and resubmit. Updating your details or uploading a document sends it back for review.</string>
+    <string name="approval_suspended_title">Restaurant suspended</string>
+    <string name="approval_suspended_body">Your restaurant is currently suspended. Contact support to resolve this.</string>
+    <string name="approval_reason">Reason: %1$s</string>
+    <string name="approval_edit_resubmit">Edit details &amp; resubmit</string>
+    <string name="approval_check_again">Check status</string>
+    <string name="approval_documents_hint">Add or replace documents while you wait.</string>
+
+    <!-- documents -->
+    <string name="documents_title">Documents</string>
+    <string name="documents_empty">No documents uploaded yet.</string>
+    <string name="documents_upload">Upload document</string>
+    <string name="documents_number">Document number (optional)</string>
+    <string name="documents_choose_file">Choose file (image or PDF)</string>
+    <string name="documents_file_selected">File selected — tap to change</string>
+    <string-array name="document_types">
+        <item>FSSAI licence</item>
+        <item>GST certificate</item>
+        <item>PAN card</item>
+        <item>Cancelled cheque / bank proof</item>
+        <item>Owner ID proof</item>
+        <item>Menu card</item>
+        <item>Other</item>
+    </string-array>
+    <string name="doc_status_pending">Pending</string>
+    <string name="doc_status_verified">Verified</string>
+    <string name="doc_status_rejected">Rejected</string>
+
+    <!-- hours -->
+    <string name="hours_title">Opening hours</string>
+    <string-array name="weekdays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="hours_open">Open</string>
+    <string name="hours_closed">Closed</string>
+    <string name="hours_invalid">Opening time must be before closing time</string>
+    <string name="hours_apply_all">Apply to all days</string>
+    <string name="hours_pick_open">Opening time</string>
+    <string name="hours_pick_close">Closing time</string>
+
+    <!-- dashboard -->
+    <string name="dashboard_title">Dashboard</string>
+    <string name="dashboard_open_now">You\'re open</string>
+    <string name="dashboard_closed_now">You\'re closed</string>
+    <string name="dashboard_chip_open">Open</string>
+    <string name="dashboard_chip_closed">Closed</string>
+    <string name="dashboard_switch_open">Restaurant open</string>
+    <string name="dashboard_switch_accepting">Accepting orders</string>
+    <string name="dashboard_switch_hint_closed">Turn on to start receiving orders.</string>
+    <string name="dashboard_not_accepting">Open, but not accepting new orders right now.</string>
+    <string name="dashboard_temp_closed_until">Temporarily closed until %1$s</string>
+    <string name="dashboard_outside_hours">Outside your opening hours. Customers see you as closed.</string>
+    <string name="dashboard_accepting">Customers can order from you now.</string>
+    <string name="dashboard_temp_close">Close temporarily</string>
+    <string name="dashboard_temp_close_hint">Pause new orders for a while, e.g. when the kitchen is overloaded. You reopen automatically.</string>
+    <string name="dashboard_close_for_minutes">Close for %1$d minutes</string>
+    <string name="dashboard_reopen_now">Reopen now</string>
+    <string name="dashboard_today">Today</string>
+    <string name="dashboard_view_orders">View orders</string>
+    <string name="dashboard_orders">Orders</string>
+    <string name="dashboard_revenue">Revenue</string>
+    <string name="dashboard_aov">Avg. order</string>
+    <string name="dashboard_completed">Completed</string>
+    <string name="dashboard_pending">In progress</string>
+    <string name="dashboard_cancelled">Cancelled</string>
+    <string name="dashboard_rating">Rating</string>
+    <string name="dashboard_rating_count">%1$d ratings</string>
+    <string name="dashboard_week">This week</string>
+    <string name="dashboard_month">This month</string>
+    <string name="dashboard_period_value">%1$d orders · %2$s</string>
+    <string name="dashboard_total_orders">Lifetime orders</string>
+    <string name="dashboard_commission">Commission</string>
+    <string name="dashboard_payouts">Payouts</string>
+    <string name="dashboard_unsettled">Unsettled amount</string>
+    <string name="dashboard_last_settlement">Last settlement</string>
+    <string name="dashboard_last_settlement_value">%1$s · %2$s · to %3$s</string>
+    <string name="dashboard_no_settlement">No settlements yet.</string>
+    <string name="dashboard_best_sellers">Best sellers</string>
+    <string name="dashboard_sold_count">%1$d sold</string>
+
+    <!-- orders -->
+    <string name="orders_title">Orders</string>
+    <string-array name="order_tabs">
+        <item>New</item>
+        <item>Preparing</item>
+        <item>Ready</item>
+        <item>Past</item>
+    </string-array>
+    <string name="orders_live">Live</string>
+    <string name="orders_reconnecting">Reconnecting…</string>
+    <string name="orders_new_order_arrived">New order received</string>
+    <string name="orders_ringing">New order alert is ringing</string>
+    <string name="action_silence">Silence</string>
+    <string name="orders_empty_new">No new orders</string>
+    <string name="orders_empty_preparing">Nothing in the kitchen</string>
+    <string name="orders_empty_ready">Nothing waiting for pickup</string>
+    <string name="orders_empty_past">No past orders yet</string>
+    <string name="orders_empty_hint">New orders appear here instantly and ring until you act on them.</string>
+    <string name="order_number">#%1$s</string>
+    <string name="order_customer">Customer</string>
+    <string name="order_more_items">+%1$d more items</string>
+    <string name="order_customer_note">Note: %1$s</string>
+    <string name="order_item_note">Note: %1$s</string>
+    <string name="order_prep_minutes">%1$d min prep</string>
+    <string name="order_detail_title">Order</string>
+    <string name="order_items_title">Items</string>
+    <string name="order_item_total">Item total</string>
+    <string name="order_packaging">Packaging</string>
+    <string name="order_coupon_discount">Coupon discount</string>
+    <string name="order_total">Customer paid</string>
+    <string name="order_commission">Commission</string>
+    <string name="order_payout">Your payout</string>
+    <string name="order_history_title">Timeline</string>
+    <string name="order_rejection_reason">Rejected because</string>
+    <string name="order_cancellation_reason">Cancelled by %1$s</string>
+    <string name="timeline_placed">Placed</string>
+    <string name="timeline_accepted">Accepted</string>
+    <string name="timeline_ready">Ready</string>
+    <string name="timeline_picked_up">Picked up</string>
+    <string name="timeline_delivered">Delivered</string>
+    <string name="timeline_eta">Estimated delivery</string>
+    <string name="status_new">New</string>
+    <string name="status_accepted">Accepted</string>
+    <string name="status_preparing">Preparing</string>
+    <string name="status_ready">Ready for pickup</string>
+    <string name="status_rider_assigned">Rider assigned</string>
+    <string name="status_picked_up">Picked up</string>
+    <string name="status_on_the_way">On the way</string>
+    <string name="status_delivered">Delivered</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="status_cancelled">Cancelled</string>
+    <string name="status_delivery_failed">Delivery failed</string>
+    <string name="payment_cod">Cash on delivery</string>
+    <string name="payment_paid_online">Paid online</string>
+    <string name="payment_online_pending">Online · unpaid</string>
+    <string name="rider_searching">Finding a rider</string>
+    <string name="rider_searching_hint">A delivery partner is being assigned.</string>
+    <string name="rider_on_the_way">Rider is on the way to you</string>
+    <string name="rider_assigned_waiting">Rider assigned</string>
+    <string name="pickup_otp_label">Pickup code — ask the rider for it</string>
+    <string name="pickup_otp_hint">Hand over the order only when the rider reads out this code.</string>
+    <string name="accept_title">Accept order</string>
+    <string name="accept_prep_question">How long until the food is ready?</string>
+    <string name="accept_minutes">%1$d min</string>
+    <string name="accept_confirm">Accept · ready in %1$d min</string>
+    <string name="reject_title">Reject order</string>
+    <string-array name="reject_reasons">
+        <item>Item out of stock</item>
+        <item>Kitchen too busy</item>
+        <item>Closing soon</item>
+        <item>Cannot deliver to this area</item>
+    </string-array>
+    <string name="cancel_order_title">Cancel order</string>
+    <string-array name="cancel_reasons">
+        <item>Item unavailable after accepting</item>
+        <item>Kitchen issue</item>
+        <item>Customer asked to cancel</item>
+    </string-array>
+    <plurals name="banner_new_orders">
+        <item quantity="one">%1$d new order waiting</item>
+        <item quantity="other">%1$d new orders waiting</item>
+    </plurals>
+    <string name="banner_new_orders_hint">Accept or reject to stop the alert</string>
+    <string name="alert_new_order_title">New order #%1$s</string>
+    <plurals name="alert_new_order_body">
+        <item quantity="one">%1$d item · tap to accept or reject</item>
+        <item quantity="other">%1$d items · tap to accept or reject</item>
+    </plurals>
+
+    <!-- menu -->
+    <string name="menu_title">Menu</string>
+    <string name="menu_categories_title">Menu categories</string>
+    <string name="menu_search">Search items</string>
+    <string name="menu_all_categories">All</string>
+    <string name="menu_filter_all">All items</string>
+    <string name="menu_filter_available">Available</string>
+    <string name="menu_filter_unavailable">Unavailable</string>
+    <string name="menu_selected_count">%1$d selected</string>
+    <string name="menu_bulk_available">Mark available</string>
+    <string name="menu_bulk_unavailable">Mark unavailable</string>
+    <string name="menu_empty">Your menu is empty</string>
+    <string name="menu_empty_hint">Add categories and items so customers can order.</string>
+    <string name="menu_no_match">No items match</string>
+    <string name="menu_no_match_hint">Try a different search or filter.</string>
+    <string name="categories_empty">No categories yet</string>
+    <string name="categories_empty_hint">Create categories like Starters, Mains and Desserts first.</string>
+    <string name="category_add">Add category</string>
+    <string name="category_edit">Edit category</string>
+    <string name="category_name">Category name</string>
+    <string name="category_description">Description (optional)</string>
+    <string name="category_item_count">%1$d items</string>
+    <string name="category_delete">Delete category</string>
+    <string name="category_delete_confirm">Delete this category? Only empty categories can be deleted.</string>
+    <string name="item_add">Add item</string>
+    <string name="item_edit">Edit item</string>
+    <string name="item_delete">Delete item</string>
+    <string name="item_delete_confirm">Delete this item from your menu? Past orders keep their copy.</string>
+    <string name="item_photo">Photo</string>
+    <string name="item_name">Item name</string>
+    <string name="item_description">Description</string>
+    <string name="item_category">Category</string>
+    <string name="item_pricing">Pricing</string>
+    <string name="item_price">Price</string>
+    <string name="item_discounted_price">Discounted price (optional)</string>
+    <string name="item_packaging">Packaging charge</string>
+    <string name="item_prep_minutes">Prep time (min)</string>
+    <string name="item_availability">Availability</string>
+    <string name="item_available">Available to order</string>
+    <string name="item_limited_stock">Limited stock</string>
+    <string name="item_limited_stock_hint">Auto-hides when the count reaches zero.</string>
+    <string name="item_stock_quantity">Stock quantity</string>
+    <string name="item_recommended">Recommended</string>
+    <string name="item_bestseller">Show as bestseller</string>
+    <string name="item_spice">Spice level</string>
+    <string name="item_spice_none">Not spicy</string>
+    <string name="item_tags">Tags</string>
+    <string name="item_tags_hint">Comma separated, e.g. jain, gluten-free</string>
+    <string name="item_variants">Variants</string>
+    <string name="item_variants_hint">Sizes or portions the customer must choose from, e.g. Half / Full. Prices replace the base price.</string>
+    <string name="item_addons">Add-ons</string>
+    <string name="item_addons_hint">Optional extras added on top, e.g. Extra cheese. Set how many can be picked.</string>
+    <string name="item_add_group">Add group</string>
+    <string name="item_stock_left">%1$d left</string>
+    <string name="item_variants_count">%1$d variant groups</string>
+    <string name="item_addons_count">%1$d add-on groups</string>
+    <string name="group_name_variant">Group name (e.g. Size)</string>
+    <string name="group_name_addon">Group name (e.g. Extras)</string>
+    <string name="group_required">Customer must choose one</string>
+    <string name="group_options_default_hint">Select the default option.</string>
+    <string name="group_min_select">Min</string>
+    <string name="group_max_select">Max</string>
+    <string name="group_nonveg_hint">Tick the box for non-veg add-ons.</string>
+    <string name="option_name">Option</string>
+    <string name="option_price">Price</string>
+    <string name="option_add">Add option</string>
+    <string name="food_veg">Veg</string>
+    <string name="food_non_veg">Non-veg</string>
+    <string name="food_egg">Egg</string>
+
+    <!-- settings -->
+    <string name="settings_title">Restaurant settings</string>
+    <string name="settings_saved">Saved</string>
+    <string name="settings_edit_profile_hint">Name, address, cuisines, licences and payouts</string>
+    <string name="settings_status">Status</string>
+    <string name="settings_closed_until">Closed until</string>
+    <string name="settings_order_settings">Order settings</string>
+    <string name="settings_min_order">Minimum order</string>
+    <string name="settings_packaging">Packaging charge</string>
+    <string name="settings_prep_time">Avg. prep time (min)</string>
+    <string name="settings_hours_hint">Opening and closing time per weekday</string>
+    <string name="settings_holidays_hint">Days you are closed</string>
+    <string name="settings_documents_hint">Licences and verification status</string>
+    <string name="settings_account">Account</string>
+    <string name="profile_edit_title">Edit profile</string>
+    <string name="profile_locked_hint">Licence, tax and bank details are locked after approval. Contact support to change them.</string>
+    <string name="holidays_title">Holidays</string>
+    <string name="holidays_empty">No holidays planned</string>
+    <string name="holidays_empty_hint">Add dates when the restaurant stays closed; customers won\'t be able to order.</string>
+    <string name="holiday_add">Add holiday</string>
+    <string name="holiday_pick_date">Pick a date</string>
+    <string name="holiday_reason">Reason (optional)</string>
+
+    <!-- finance -->
+    <string name="finance_title">Finance</string>
+    <string-array name="finance_presets">
+        <item>Today</item>
+        <item>This week</item>
+        <item>This month</item>
+        <item>Last month</item>
+        <item>All time</item>
+        <item>Custom</item>
+    </string-array>
+    <string name="finance_range">%1$s – %2$s</string>
+    <string name="finance_range_all">All time</string>
+    <string name="finance_net_earnings">Net earnings</string>
+    <string name="finance_breakdown">Breakdown</string>
+    <string name="finance_gross_sales">Gross sales</string>
+    <string name="finance_commission_pct">Commission (%1$s%%)</string>
+    <string name="finance_coupon_deductions">Coupon deductions</string>
+    <string name="finance_refund_deductions">Refund deductions</string>
+    <string name="finance_tax_collected">GST collected</string>
+    <string name="finance_download_csv">Download CSV statement</string>
+    <string name="finance_share_statement">Share statement</string>
+    <string name="finance_unsettled_title">Unsettled</string>
+    <string name="finance_unsettled_amount">To be paid out</string>
+    <string name="finance_unsettled_count">%1$d orders awaiting settlement</string>
+    <string name="finance_settlements_title">Settlements</string>
+    <string name="finance_settlements_empty">No settlements yet</string>
+    <string name="finance_settlements_empty_hint">Payout batches appear here once delivered orders are settled.</string>
+    <string name="finance_period">%1$s – %2$s</string>
+    <string name="finance_settlement_orders">%1$d orders</string>
+    <string name="finance_settlement_breakdown">Gross %1$s · commission %2$s · coupons %3$s · refunds %4$s · adjustments %5$s</string>
+    <string name="finance_processed_at">Processed %1$s</string>
+    <string name="finance_lines_title">Order-wise earnings</string>
+    <string name="finance_lines_empty">No delivered orders yet</string>
+    <string name="finance_lines_empty_hint">Each delivered order appears here with its payout.</string>
+    <string name="finance_unsettled_only">Unsettled only</string>
+    <string name="finance_line_breakdown">Gross %1$s · commission %2$s%% (%3$s) · coupon %4$s · refund %5$s</string>
+
+    <!-- reviews -->
+    <string name="reviews_title">Reviews</string>
+    <string name="reviews_empty">No reviews yet</string>
+    <string name="reviews_empty_hint">Customer reviews show up here after delivery.</string>
+    <string name="reviews_recent_average">Average of loaded reviews</string>
+    <string name="reviews_unanswered">%1$d without a reply</string>
+    <string name="reviews_reply">Reply</string>
+    <string name="reviews_edit_reply">Edit reply</string>
+    <string name="reviews_reply_label">Your reply</string>
+    <string name="reviews_reply_hint">Visible to all customers. Max 1000 characters.</string>
+    <string name="reviews_your_reply">Your reply</string>
+
+    <!-- notifications -->
+    <string name="notifications_title">Notifications</string>
+    <string name="notifications_empty">No notifications</string>
+    <string name="notifications_empty_hint">Order and account updates appear here.</string>
+    <string name="notifications_mark_all_read">Mark all as read</string>
+
+    <!-- support -->
+    <string name="support_title">Help &amp; support</string>
+    <string name="support_contact">Contact us</string>
+    <string name="support_email">Email</string>
+    <string name="support_tickets">Your tickets</string>
+    <string name="support_tickets_empty">No tickets yet. Tap + to raise one.</string>
+    <string name="support_faqs">FAQs</string>
+    <string name="support_faqs_empty">No FAQs available right now.</string>
+    <string name="support_new_ticket">New ticket</string>
+    <string name="support_ticket">Ticket</string>
+    <string name="support_category">Category</string>
+    <string name="support_subject">Subject</string>
+    <string name="support_description">Describe the issue</string>
+    <string name="support_close_ticket">Close</string>
+    <string name="support_attach">Attach file</string>
+    <string name="support_attachment">View attachment</string>
+    <string name="support_reply_hint">Write a reply…</string>
+    <string name="support_resolution">Resolution: %1$s</string>
+    <string name="support_staff">LocalRush support</string>
+    <string name="support_you">You</string>
+</resources>

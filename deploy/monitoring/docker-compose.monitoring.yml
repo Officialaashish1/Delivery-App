@@ -1,0 +1,33 @@
+# Optional observability stack: Prometheus + Grafana + exporters. `docker compose -f deploy/monitoring/docker-compose.monitoring.yml up -d`
+name: localrush-monitoring
+services:
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    volumes: ["./prometheus.yml:/etc/prometheus/prometheus.yml:ro", promdata:/prometheus]
+    ports: ["127.0.0.1:9090:9090"]
+    networks: [default, localrush-prod_default]
+  grafana:
+    image: grafana/grafana:11.3.0
+    environment: {GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_PASSWORD:-admin}"}
+    ports: ["127.0.0.1:3000:3000"]
+    volumes: [grafanadata:/var/lib/grafana]
+  node-exporter:
+    image: prom/node-exporter:v1.8.2
+    pid: host
+    volumes: ["/:/host:ro,rslave"]
+    command: ["--path.rootfs=/host"]
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:v0.16.0
+    environment: {DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable"}
+    networks: [default, localrush-prod_default]
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.66.0
+    environment: {REDIS_ADDR: "redis://redis:6379", REDIS_PASSWORD: "${REDIS_PASSWORD}"}
+    networks: [default, localrush-prod_default]
+  celery-exporter:
+    image: danihodovic/celery-exporter:0.10.17
+    command: ["--broker-url=redis://:${REDIS_PASSWORD}@redis:6379/1"]
+    networks: [default, localrush-prod_default]
+networks:
+  localrush-prod_default: {external: true}
+volumes: {promdata: {}, grafanadata: {}}

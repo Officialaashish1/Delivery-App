@@ -1,0 +1,92 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LocalRush · Live tracking demo</title>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+:root{--o:#F26B1D;--g:#16A34A;--c:#23272F;--m:#6B7280;--line:#ECEEF2}
+*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:Inter,system-ui,sans-serif;color:var(--c);background:#fff}
+.phone{position:relative;max-width:430px;height:100%;margin:0 auto;display:flex;flex-direction:column;box-shadow:0 0 0 1px #eee}
+header{padding:14px 16px 10px;background:#fff;z-index:3}
+.top{display:flex;align-items:center;justify-content:space-between}.top b{font-size:20px}.top small{display:block;color:var(--m);font-weight:400;font-size:12px}
+.live{background:#DCFCE7;color:#166534;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
+.steps{display:flex;align-items:center;margin-top:12px}.step{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:var(--m);width:64px}
+.dot{width:30px;height:30px;border-radius:50%;border:2px solid #ddd;display:grid;place-items:center;background:#fff;font-size:14px}
+.step.done .dot{background:var(--g);border-color:var(--g);color:#fff}.step.cur .dot{background:var(--o);border-color:var(--o);color:#fff;transform:scale(1.15);box-shadow:0 0 0 6px #fde9dd}.step.cur{color:var(--o);font-weight:700}
+.bar{flex:1;height:3px;background:#ddd;margin:0 -8px 20px}.bar.done{background:var(--g)}.bar.dash{background:repeating-linear-gradient(90deg,#bbb 0 6px,transparent 6px 10px)}
+#map{flex:1;min-height:300px}
+.chip{position:absolute;right:14px;top:150px;background:#fff;padding:8px 12px;border-radius:999px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:2;font-size:13px}
+.fab{position:absolute;right:14px;bottom:330px;width:46px;height:46px;border-radius:14px;background:#fff;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.15);z-index:2;cursor:pointer;font-size:20px;color:var(--o)}
+.sheet{background:#fff;border-radius:24px 24px 0 0;padding:10px 20px 20px;box-shadow:0 -10px 30px rgba(0,0,0,.08);z-index:3}
+.handle{width:40px;height:4px;background:#ccc;border-radius:2px;margin:0 auto 12px}
+.eta{display:flex;justify-content:space-between;align-items:flex-end}.eta b{font-size:40px;color:var(--o);line-height:1}.eta span{color:var(--m);font-size:14px}.eta .r{text-align:right;font-size:12px;color:var(--m)}.eta .r b{font-size:18px;color:var(--c)}
+.otp{margin-top:14px;background:#FFF1E8;border-radius:14px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center}.otp b{color:var(--o)}.otp small{display:block;color:var(--m)}.otp .code{font-size:24px;letter-spacing:4px;color:var(--o);font-weight:800;white-space:nowrap;margin-left:10px}
+.rider{display:flex;align-items:center;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}.av{width:46px;height:46px;border-radius:50%;background:#e5e7eb;display:grid;place-items:center;font-size:22px}.rider .n{flex:1}.rider .n b{display:block}.rider .n span{color:var(--m);font-size:12px}
+.rb{width:44px;height:44px;border-radius:50%;background:#FFF1E8;color:var(--o);display:grid;place-items:center;font-size:18px;cursor:pointer}
+.scooter{width:56px;height:56px;transition:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.pin{width:36px;height:36px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:grid;place-items:center;box-shadow:0 4px 10px rgba(0,0,0,.25)}.pin span{transform:rotate(45deg);font-size:16px}
+.note{position:absolute;left:12px;bottom:330px;background:rgba(35,39,47,.85);color:#fff;font-size:11px;padding:6px 10px;border-radius:8px;z-index:2}
+</style></head><body><div class="phone">
+<header><div class="top"><div><b id="title">On the way</b><small id="sub">Order #LR40030446 · live demo of the customer tracking screen</small></div><span class="live" id="live">● Live</span></div>
+<div class="steps" id="steps"></div></header>
+<div id="map"></div><div class="chip" id="dist">— km away</div><div class="fab" id="recenter" title="Recenter">◎</div><div class="note" id="note">Simulated GPS fix every 3 s · marker interpolates between fixes (same as the Android MarkerAnimator)</div>
+<div class="sheet"><div class="handle"></div><div class="eta"><div><b id="eta">—</b> <span>min</span><br><span id="etasub">Your rider is on the way</span></div><div class="r">Arrives by<br><b id="arrive">—</b></div></div>
+<div class="otp"><div><b>Delivery OTP</b><small>Share this code with your rider at the door</small></div><div class="code">4 8 2 1</div></div>
+<div class="rider"><div class="av">🧑</div><div class="n"><b>Amit Rider</b><span>★ 4.9 · 326 deliveries · GJ05AB1000</span></div><div class="rb">📞</div><div class="rb">💬</div></div></div></div>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script><script src="markers.js"></script>
+<script>
+const MARKER = (new URLSearchParams(location.search).get("marker") || "A").toUpperCase();  // try ?marker=B/C/D/E
+const API = (new URLSearchParams(location.search).get("api") || (location.protocol + "//" + location.hostname + ":8001")).replace(/\/$/, "") + "/api/v1";  // ?api=https://<forwarded-8001-host> when ports are tunnelled separately
+const REST = [72.8730, 21.2340], HOME = [72.8810, 21.2385];   // Spice Villa → customer (Surat demo data)
+const SPEED_KMPH = 22, FIX_EVERY_MS = 3000;
+const stages = ["Placed", "Preparing", "On the way", "Delivered"];
+const stepsEl = document.getElementById("steps");
+stages.forEach((s, i) => { if (i) { const b = document.createElement("div"); b.className = "bar " + (i <= 2 ? "done" : "dash"); stepsEl.appendChild(b); } const d = document.createElement("div"); d.className = "step " + (i < 2 ? "done" : i === 2 ? "cur" : ""); d.innerHTML = `<div class="dot">${i < 2 ? "✓" : i === 2 ? "🛵" : ""}</div>${s}`; stepsEl.appendChild(d); });
+function decode(str) { let i = 0, lat = 0, lng = 0, out = []; while (i < str.length) { let b, sh = 0, r = 0; do { b = str.charCodeAt(i++) - 63; r |= (b & 31) << sh; sh += 5; } while (b >= 32); lat += (r & 1) ? ~(r >> 1) : r >> 1; sh = 0; r = 0; do { b = str.charCodeAt(i++) - 63; r |= (b & 31) << sh; sh += 5; } while (b >= 32); lng += (r & 1) ? ~(r >> 1) : r >> 1; out.push([lng / 1e5, lat / 1e5]); } return out; }
+const R = 6371008.8, rad = x => x * Math.PI / 180, deg = x => x * 180 / Math.PI;
+function hav(a, b) { const dLat = rad(b[1] - a[1]), dLng = rad(b[0] - a[0]); const h = Math.sin(dLat / 2) ** 2 + Math.cos(rad(a[1])) * Math.cos(rad(b[1])) * Math.sin(dLng / 2) ** 2; return 2 * R * Math.asin(Math.sqrt(h)); }
+function bearing(a, b) { const y = Math.sin(rad(b[0] - a[0])) * Math.cos(rad(b[1])); const x = Math.cos(rad(a[1])) * Math.sin(rad(b[1])) - Math.sin(rad(a[1])) * Math.cos(rad(b[1])) * Math.cos(rad(b[0] - a[0])); return (deg(Math.atan2(y, x)) + 360) % 360; }
+const lerp = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+function lerpBearing(a, b, t) { let d = ((b - a + 540) % 360) - 180; return (a + d * t + 360) % 360; }
+const ease = t => t < .5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+async function token() { try { const c = JSON.parse(localStorage.lrDemoTok || "null"); if (c && Date.now() - c.at < 25 * 60e3) return c.t; } catch (_) { }
+  const h = { "Content-Type": "application/json" }; await fetch(API + "/auth/otp/request/", { method: "POST", headers: h, body: JSON.stringify({ phone: "+919200000001", role: "customer" }) });
+  const r = await fetch(API + "/auth/otp/verify/", { method: "POST", headers: h, body: JSON.stringify({ phone: "+919200000001", code: "123456", role: "customer" }) }); const d = await r.json();
+  try { localStorage.lrDemoTok = JSON.stringify({ t: d.access, at: Date.now() }); } catch (_) { } return d.access; }
+async function route() { const t = await token(); const r = await fetch(`${API}/tracking/route/?from_lat=${REST[1]}&from_lng=${REST[0]}&to_lat=${HOME[1]}&to_lng=${HOME[0]}`, { headers: { Authorization: "Bearer " + t } }); return r.json(); }
+const map = new maplibregl.Map({ container: "map", style: "https://tiles.openfreemap.org/styles/liberty", center: REST, zoom: 14, attributionControl: false, pitch: 0 });
+map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: "© OpenStreetMap contributors, © OpenFreeMap" }));
+const pin = (bg, icon) => { const d = document.createElement("div"); d.className = "pin"; d.style.background = bg; d.innerHTML = `<span>${icon}</span>`; return d; };
+const scooterEl = document.createElement("div"); scooterEl.className = "scooter"; scooterEl.innerHTML = LR_MARKERS[MARKER](0);
+const setHeading = b => { scooterEl.innerHTML = LR_MARKERS[MARKER](Math.round(b)); };
+let follow = true, userPan = false;
+map.on("dragstart", () => { follow = false; });
+document.getElementById("recenter").onclick = () => { follow = true; };
+map.on("load", async () => {
+  new maplibregl.Marker({ element: pin("#F26B1D", "🍽"), anchor: "bottom", offset: [0, 4] }).setLngLat(REST).addTo(map);
+  new maplibregl.Marker({ element: pin("#2563EB", "🏠"), anchor: "bottom", offset: [0, 4] }).setLngLat(HOME).addTo(map);
+  let rt; try { rt = await route(); } catch (e) { rt = null; }
+  const coords = rt && rt.geometry ? decode(rt.geometry) : [REST, HOME];
+  document.getElementById("note").textContent = (rt && rt.source === "osrm" ? "Real OSRM road route · " : "Straight-line fallback · ") + "GPS fix every 3 s, marker interpolates between fixes (same as Android MarkerAnimator)";
+  map.addSource("route", { type: "geojson", data: { type: "Feature", geometry: { type: "LineString", coordinates: coords } } });
+  map.addLayer({ id: "route-casing", type: "line", source: "route", paint: { "line-color": "#fff", "line-width": 8, "line-opacity": .9 }, layout: { "line-cap": "round", "line-join": "round" } });
+  map.addLayer({ id: "route", type: "line", source: "route", paint: { "line-color": "#F26B1D", "line-width": 5 }, layout: { "line-cap": "round", "line-join": "round" } });
+  const b = new maplibregl.LngLatBounds(); coords.forEach(c => b.extend(c)); map.fitBounds(b, { padding: { top: 60, bottom: 80, left: 50, right: 50 }, duration: 1200 });
+  // distance table along the route
+  const cum = [0]; for (let i = 1; i < coords.length; i++) cum.push(cum[i - 1] + hav(coords[i - 1], coords[i]));
+  const total = cum[cum.length - 1];
+  const at = m => { if (m >= total) return coords[coords.length - 1]; let i = 1; while (cum[i] < m) i++; const t = (m - cum[i - 1]) / (cum[i] - cum[i - 1] || 1); return lerp(coords[i - 1], coords[i], t); };
+  const marker = new maplibregl.Marker({ element: scooterEl, anchor: MARKER === "D" ? "bottom" : "center" }).setLngLat(coords[0]).addTo(map);
+  // --- the "GPS" produces one fix every 3 s; the animator slides the marker there over 3 s with easing + bearing lerp
+  let travelled = 0, cur = coords[0], curB = 0, anim = null;
+  function animateTo(target, dur) { const start = cur, sb = curB, tb = hav(start, target) > 2 ? bearing(start, target) : curB, t0 = performance.now(); cancelAnimationFrame(anim);
+    const frame = now => { const t = Math.min(1, (now - t0) / dur), e = ease(t); cur = lerp(start, target, e); curB = lerpBearing(sb, tb, e); marker.setLngLat(cur); setHeading(curB);
+      if (follow) map.easeTo({ center: cur, duration: 0, padding: { bottom: 120 } }); if (t < 1) anim = requestAnimationFrame(frame); }; anim = requestAnimationFrame(frame); }
+  const mPerFix = SPEED_KMPH / 3.6 * FIX_EVERY_MS / 1000;
+  function tick() { travelled = Math.min(total, travelled + mPerFix * (0.8 + Math.random() * 0.4)); const fix = at(travelled); animateTo(fix, FIX_EVERY_MS);
+    const left = total - travelled, mins = Math.max(1, Math.round(left / (SPEED_KMPH / 3.6) / 60)); document.getElementById("dist").textContent = (left / 1000).toFixed(1) + " km away";
+    document.getElementById("eta").textContent = left < 30 ? "0" : mins; document.getElementById("arrive").textContent = new Date(Date.now() + left / (SPEED_KMPH / 3.6) * 1000).toLocaleTimeString("en-IN", { timeStyle: "short" });
+    if (left < 300 && left >= 30) { document.getElementById("title").textContent = "Near your location"; document.getElementById("etasub").textContent = "Keep the OTP ready"; }
+    if (left < 30) { document.getElementById("title").textContent = "Delivered"; document.getElementById("etasub").textContent = "Enjoy your meal!"; document.querySelectorAll(".step")[2].className = "step done"; document.querySelectorAll(".step")[2].querySelector(".dot").textContent = "✓"; document.querySelectorAll(".step")[3].className = "step cur"; document.querySelectorAll(".step")[3].querySelector(".dot").textContent = "✓"; document.querySelectorAll(".bar")[2].className = "bar done"; setTimeout(() => { travelled = 0; cur = coords[0]; marker.setLngLat(cur); location.reload(); }, 6000); return; }
+    setTimeout(tick, FIX_EVERY_MS); }
+  setTimeout(tick, 1500);
+});
+</script></body></html>

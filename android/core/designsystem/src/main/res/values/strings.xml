@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ds_retry">Retry</string>
+    <string name="ds_offline">You\'re offline. Some features may not work.</string>
+    <string name="ds_error_generic">Something went wrong</string>
+    <string name="ds_empty_generic">Nothing here yet</string>
+    <string name="ds_loading">Loading…</string>
+    <string name="ds_veg">Veg</string>
+    <string name="ds_non_veg">Non-veg</string>
+    <string name="ds_egg">Egg</string>
+    <string name="ds_step_placed">Placed</string>
+    <string name="ds_step_preparing">Preparing</string>
+    <string name="ds_step_on_the_way">On the way</string>
+    <string name="ds_step_delivered">Delivered</string>
+</resources>

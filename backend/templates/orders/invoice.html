@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Invoice {{ order.order_number }}</title>
+<style>body{font-family:Arial,sans-serif;max-width:720px;margin:24px auto;color:#222}h1{color:#F26B1D;margin:0}
+table{width:100%;border-collapse:collapse;margin-top:16px}td,th{padding:8px;border-bottom:1px solid #eee;text-align:left}
+.r{text-align:right}.tot{font-weight:bold;font-size:1.1em}.muted{color:#777;font-size:.9em}</style></head><body>
+<h1>LocalRush</h1><div class="muted">Tax invoice / order receipt</div>
+<p><b>Order #{{ order.order_number }}</b><br>Placed: {{ order.placed_at|date:"d M Y, H:i" }}<br>
+Status: {{ order.get_status_display }}<br>Payment: {{ order.get_payment_method_display }}{% if order.is_paid %} (paid){% endif %}</p>
+<p><b>Restaurant:</b> {{ order.restaurant_name }}<br>{{ order.restaurant_address_text }}{% if order.restaurant.fssai_number %}<br>FSSAI: {{ order.restaurant.fssai_number }}{% endif %}{% if order.restaurant.gst_number %}<br>GSTIN: {{ order.restaurant.gst_number }}{% endif %}</p>
+<p><b>Deliver to:</b> {{ order.delivery_name }}<br>{{ order.delivery_address_text }}</p>
+<table><tr><th>Item</th><th class="r">Qty</th><th class="r">Price</th><th class="r">Total</th></tr>
+{% for i in items %}<tr><td>{{ i.name }}{% if i.variant_name %} ({{ i.variant_name }}){% endif %}{% if i.addon_names %}<br><span class="muted">+ {{ i.addon_names|join:", " }}</span>{% endif %}</td>
+<td class="r">{{ i.quantity }}</td><td class="r">₹{{ i.unit_price }}{% if i.addons_price != 0 %} + ₹{{ i.addons_price }}{% endif %}</td><td class="r">₹{{ i.line_total }}</td></tr>{% endfor %}
+<tr><td colspan="3" class="r">Item total</td><td class="r">₹{{ order.item_total }}</td></tr>
+<tr><td colspan="3" class="r">Packaging</td><td class="r">₹{{ order.packaging_charge }}</td></tr>
+<tr><td colspan="3" class="r">Delivery fee</td><td class="r">₹{{ order.delivery_fee }}</td></tr>
+{% if order.delivery_discount != 0 %}<tr><td colspan="3" class="r">Delivery discount</td><td class="r">-₹{{ order.delivery_discount }}</td></tr>{% endif %}
+<tr><td colspan="3" class="r">Platform fee</td><td class="r">₹{{ order.platform_fee }}</td></tr>
+<tr><td colspan="3" class="r">GST ({{ order.tax_percent }}%)</td><td class="r">₹{{ order.tax_amount }}</td></tr>
+{% if order.coupon_discount != 0 %}<tr><td colspan="3" class="r">Coupon {{ order.coupon_code }}</td><td class="r">-₹{{ order.coupon_discount }}</td></tr>{% endif %}
+<tr class="tot"><td colspan="3" class="r">Grand total</td><td class="r">₹{{ order.total_amount }}</td></tr></table>
+<p class="muted">Support: {{ settings.support_email }} {{ settings.support_phone }}</p></body></html>

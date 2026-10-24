@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monochrome small icon for notifications (scooter). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFFFF"
+        android:pathData="M19,7h-1.5V5H14v1.5h2V10.5H10L8.6,7.5H3V9h4.6L9,12l-1.5,2h7c-0.1,-0.3 -0.2,-0.6 -0.2,-1 0,-2 1.6,-3.5 3.5,-3.5h1V7z M5.5,14C3.6,14 2,15.6 2,17.5S3.6,21 5.5,21 9,19.4 9,17.5 7.4,14 5.5,14z m0,5c-0.8,0 -1.5,-0.7 -1.5,-1.5S4.7,16 5.5,16 7,16.7 7,17.5 6.3,19 5.5,19z M18.5,14c-1.9,0 -3.5,1.6 -3.5,3.5s1.6,3.5 3.5,3.5 3.5,-1.6 3.5,-3.5 -1.6,-3.5 -3.5,-3.5z m0,5c-0.8,0 -1.5,-0.7 -1.5,-1.5s0.7,-1.5 1.5,-1.5 1.5,0.7 1.5,1.5 -0.7,1.5 -1.5,1.5z M3,3h5v3.5H3z" />
+</vector>

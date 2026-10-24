@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="push_channel_orders">Order updates</string>
+    <string name="push_channel_orders_desc">Status of your orders and delivery</string>
+    <string name="push_channel_promos">Offers &amp; promotions</string>
+    <string name="push_channel_promos_desc">Deals, coupons and announcements</string>
+    <string name="push_channel_rider_offers">New delivery offers</string>
+    <string name="push_channel_rider_offers_desc">Time-limited delivery requests</string>
+    <string name="push_channel_rider_orders">Active delivery</string>
+    <string name="push_channel_rider_orders_desc">Updates about your current delivery</string>
+    <string name="push_channel_partner_orders">New orders</string>
+    <string name="push_channel_partner_orders_desc">Incoming orders that need your action</string>
+</resources>

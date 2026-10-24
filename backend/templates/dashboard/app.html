@@ -1,0 +1,43 @@
+{% load static %}<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LocalRush Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'dashboard/app.css' %}">
+<script>window.LR = {mapStyle: "{{ MAP_STYLE_URL|escapejs }}", attribution: "{{ MAP_ATTRIBUTION|escapejs }}", csrf: "{{ csrf_token }}"};</script>
+</head><body>
+<div id="app">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-dot"></span> LocalRush</div>
+    <nav id="nav">
+      <a href="#/" data-route="/"><i>▦</i>Dashboard</a>
+      <a href="#/orders" data-route="/orders"><i>🧾</i>Orders</a>
+      <a href="#/live" data-route="/live"><i>📍</i>Live tracking</a>
+      <a href="#/customers" data-route="/customers"><i>👤</i>Customers</a>
+      <a href="#/restaurants" data-route="/restaurants"><i>🍽</i>Restaurants</a>
+      <a href="#/riders" data-route="/riders"><i>🛵</i>Riders</a>
+      <a href="#/finance" data-route="/finance"><i>₹</i>Finance</a>
+      <a href="#/promotions" data-route="/promotions"><i>🏷</i>Promotions</a>
+      <a href="#/support" data-route="/support"><i>💬</i>Support</a>
+      <a href="#/reports" data-route="/reports"><i>📈</i>Reports</a>
+      <a href="#/settings" data-route="/settings"><i>⚙</i>Settings</a>
+    </nav>
+    <form method="post" action="/dashboard/logout/" class="logout">{% csrf_token %}<button>⎋ Logout</button></form>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <h1 id="page-title">Dashboard</h1>
+      <div class="top-right">
+        <input id="global-search" placeholder="Search order #, phone, restaurant…">
+        <span id="ws-dot" class="ws-dot" title="Live connection"></span>
+        <div class="avatar" id="user-chip"></div>
+      </div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+<div id="modal-root"></div>
+<div id="toast-root"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="{% static 'dashboard/app.js' %}"></script>
+</body></html>
