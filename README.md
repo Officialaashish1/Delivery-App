@@ -12,7 +12,6 @@
 [![Payments](https://img.shields.io/badge/payments-Razorpay-0C2451?style=flat-square&logo=razorpay&logoColor=white)](docs/API_CONTRACTS.md)
 [![Tests](https://img.shields.io/badge/tests-54%20backend%20%C2%B7%20123%20android-16A34A?style=flat-square)](docs/TESTING.md)
 [![Docker](https://img.shields.io/badge/deploy-Docker%20Compose%20%C2%B7%20nginx%20%C2%B7%20TLS-2496ED?style=flat-square&logo=docker&logoColor=white)](deploy/)
-[![License](https://img.shields.io/badge/map%20data-%C2%A9%20OpenStreetMap-7EBC6F?style=flat-square)](https://www.openstreetmap.org/copyright)
 
 <br>
 
@@ -261,9 +260,3 @@ Full file map: [STRUCTURE.md](STRUCTURE.md)
 3. Build map data for your region (`deploy/scripts/prepare-osrm.sh`, `prepare-nominatim.sh`).
 4. `cd deploy && DOMAIN=api.example.com EMAIL=ops@example.com ./scripts/init-letsencrypt.sh && docker compose -f docker-compose.prod.yml --env-file ../backend/.env up -d --build`
 5. Sign and ship the apps — [docs/PLAYSTORE_RELEASE.md](docs/PLAYSTORE_RELEASE.md).
-
----
-
-<div align="center">
-<sub>Map data © OpenStreetMap contributors (ODbL) · Tiles by OpenFreeMap · Routing by OSRM · Geocoding by Nominatim · Rendering by MapLibre</sub>
-</div>
